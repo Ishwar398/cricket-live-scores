@@ -11,30 +11,30 @@ app = Flask(__name__)
 def GetMatchDetails():
     matchId=request.form.get('matchId')
     jsonObj_matchInfo = c.matchinfo(matchId)
-    return json.dumps({'success':True,'data':jsonObj_matchInfo}), 200, {'ContentType':'application/json'} 
+    return {'success':True,'data':jsonObj_matchInfo}, 200, {'ContentType':'application/json'} 
 
 @app.route("/GetMatchLiveScore",methods=['POST'])
 def GetMatchLiveScore():
     matchId=request.form.get('matchId')
     jsonObj_matchLiveScore = c.livescore(matchId)
-    return json.dumps({'success':True,'data':jsonObj_matchLiveScore}), 200, {'ContentType':'application/json'} 
+    return {'success':True,'data':jsonObj_matchLiveScore}, 200, {'ContentType':'application/json'} 
 
 @app.route("/GetMatchScoreCard",methods=['POST'])
 def GetMatchScoreCard():
     matchId=request.form.get('matchId')
     jsonObj_matchScoreCard = c.scorecard(matchId)
-    return json.dumps({'success':True,'data':jsonObj_matchScoreCard}), 200, {'ContentType':'application/json'} 
+    return {'success':True,'data':jsonObj_matchScoreCard}, 200, {'ContentType':'application/json'} 
 
 @app.route("/GetMatchCommentry",methods=['POST'])
 def GetMatchCommentry():
     matchId=request.form.get('matchId')
     jsonObj_matchCommentry = c.commentary(matchId)
-    return json.dumps({'success':True,'data':jsonObj_matchCommentry}), 200, {'ContentType':'application/json'} 
+    return {'success':True,'data':jsonObj_matchCommentry}, 200, {'ContentType':'application/json'} 
 
 @app.route("/GetOnGoingMatches",methods=['POST'])
 def GetOnGoingMatches():
     matches = c.matches()
-    return json.dumps({'success':True,'data':matches}), 200, {'ContentType':'application/json'} 
+    return {'success':True,'data':matches}, 200, {'ContentType':'application/json'} 
 
 @app.errorhandler(NotFound)
 def page_not_found_handler(e: HTTPException):
@@ -54,5 +54,8 @@ def forbidden_handler(e: HTTPException):
 @app.errorhandler(RequestTimeout)
 def request_timeout_handler(e: HTTPException):
     return render_template('408.html'), 408
+
+
+app.run()
 
 
