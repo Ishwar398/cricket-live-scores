@@ -31,4 +31,4 @@ jobs:
       with:
         app-name: 'ip-cricket-server'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7f650cbc65f14f338caa563119d39f67 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_fce8a07220184021bcbe51635d428f6f }}
