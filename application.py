@@ -34,7 +34,12 @@ def GetMatchCommentry():
 @app.route("/GetOnGoingMatches",methods=['POST'])
 def GetOnGoingMatches():
     matches = c.matches()
-    return {'success':True,'data':matches}, 200, {'ContentType':'application/json'} 
+    return {'success':True,'data':matches}, 200, {'ContentType':'application/json'}
+
+@app.route("/")
+def TestConnection():
+    return json.dumps({'success':True,'data':'Test Successful'}), 200, {'ContentType':'application/json'} 
+
 
 @app.errorhandler(NotFound)
 def page_not_found_handler(e: HTTPException):
@@ -54,8 +59,5 @@ def forbidden_handler(e: HTTPException):
 @app.errorhandler(RequestTimeout)
 def request_timeout_handler(e: HTTPException):
     return render_template('408.html'), 408
-
-
-app.run()
 
 
