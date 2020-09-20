@@ -61,3 +61,5 @@ def request_timeout_handler(e: HTTPException):
     return render_template('408.html'), 408
 
 
+if __name__ == '__main__':
+    app.run()
