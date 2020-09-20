@@ -9,9 +9,12 @@ app = Flask(__name__)
 
 @app.route("/GetMatchDetails",methods=['POST'])
 def GetMatchDetails():
-    matchId=request.form.get('matchId')
-    jsonObj_matchInfo = c.matchinfo(matchId)
-    return {'success':True,'data':jsonObj_matchInfo}, 200, {'ContentType':'application/json'} 
+    try:
+        matchId=request.form.get('matchId')
+        jsonObj_matchInfo = c.matchinfo(matchId)
+        return {'success':True,'data':jsonObj_matchInfo}, 200, {'ContentType':'application/json'} 
+    except Exception as e:
+        return {'message': str(e)}
 
 @app.route("/GetMatchLiveScore",methods=['POST'])
 def GetMatchLiveScore():
